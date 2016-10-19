@@ -1,0 +1,31 @@
+﻿<Window x:Class="FormattedTextViewer.View.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="http://www.caliburnproject.org"
+        Title="{Binding ApplicationTitle}" Height="640" Width="480" Icon="Oxygen-Icons.org-Oxygen-Actions-document-edit.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <Label>TextFormat: </Label>
+            <ComboBox x:Name="FormattingTypes" DisplayMemberPath="Item2" SelectedValuePath="Item1" Style="{StaticResource DropDownStyle}"></ComboBox>
+            <Button cal:Message.Attach="[Event Click] = [Action Clear]" Margin="10 0 0 0">Clear</Button>
+        </StackPanel>
+        
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <TextBox  x:Name="UnprocessedText" AcceptsReturn="True" TextWrapping="Wrap" cal:Message.Attach="[Event TextChanged] = [Action Process]"></TextBox>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Row="2" Grid.Column="0">
+            <TextBox  x:Name="ProcessedText" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsEnabled="False"></TextBox>    
+        </ScrollViewer>
+    </Grid>
+</Window>
