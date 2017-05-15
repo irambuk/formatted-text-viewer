@@ -8,24 +8,25 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="0 0 5 0">
             <Label>TextFormat: </Label>
             <ComboBox x:Name="FormattingTypes" DisplayMemberPath="Item2" SelectedValuePath="Item1" Style="{StaticResource DropDownStyle}"></ComboBox>
             <Button cal:Message.Attach="[Event Click] = [Action Clear]" Margin="10 0 0 0">Clear</Button>
+            <Button cal:Message.Attach="[Event Click] = [Action CopyFromClipboard]" Margin="10 0 0 0">Copy From Clipboard</Button>
+            <Button cal:Message.Attach="[Event Click] = [Action CopyToClipboard]" Margin="10 0 0 0">Copy To Clipboard</Button>
         </StackPanel>
         
-
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
-            <TextBox  x:Name="UnprocessedText" AcceptsReturn="True" TextWrapping="Wrap" cal:Message.Attach="[Event TextChanged] = [Action Process]"></TextBox>
-        </ScrollViewer>
-
-        <ScrollViewer Grid.Row="2" Grid.Column="0">
-            <TextBox  x:Name="ProcessedText" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsEnabled="False"></TextBox>    
-        </ScrollViewer>
+        <TabControl Grid.Row="1" Grid.Column="0">
+            <TabItem Header="Original Text" IsSelected="{Binding IsFormattedTextTabSelected}">
+                <TextBox  x:Name="UnprocessedText" AcceptsReturn="True" TextWrapping="Wrap" cal:Message.Attach="[Event TextChanged] = [Action Process]"></TextBox>
+            </TabItem>
+            <TabItem Header="Formatted Text" IsSelected="{Binding IsPlainTextTabSelected}">
+                <TextBox  x:Name="ProcessedText" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"></TextBox>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

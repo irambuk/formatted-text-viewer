@@ -5,6 +5,7 @@ using System.Reflection;
 using Caliburn.Micro;
 using FormattedTextViewer.View.Services;
 using PropertyChanged;
+using System.Windows;
 
 namespace FormattedTextViewer.View
 {
@@ -38,6 +39,14 @@ namespace FormattedTextViewer.View
 
         public string ProcessedText { get; set; }
 
+        public bool IsFormattedTextTabSelected { get; set; }
+
+        public bool IsPlainTextTabSelected
+        {
+            get { return !IsFormattedTextTabSelected; }
+            set { IsFormattedTextTabSelected = !value; }
+        }
+
         public MainWindowViewModel(IDetectTextFormatService detectTextFormatService, ITextFormattingFactory textFormattingFactory)
         {
             this.detectTextFormatService = detectTextFormatService;
@@ -69,6 +78,16 @@ namespace FormattedTextViewer.View
         {
             UnprocessedText = string.Empty;
             NotifyOfPropertyChange(() => UnprocessedText);
+        }
+
+        public void CopyFromClipboard()
+        {
+            UnprocessedText = Clipboard.GetText(TextDataFormat.Text);
+        }
+
+        public void CopyToClipboard()
+        {
+            Clipboard.SetText(ProcessedText, TextDataFormat.Text);
         }
     }
 }
