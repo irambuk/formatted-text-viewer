@@ -37,15 +37,15 @@ namespace FormattedTextViewer.View
 
         public string UnprocessedTextSelected { get; set; }
 
-        public string ProcessedText { get; set; }
-
-        public bool IsFormattedTextTabSelected { get; set; }
+        public string ProcessedText { get; set; }        
 
         public bool IsPlainTextTabSelected
         {
             get { return !IsFormattedTextTabSelected; }
             set { IsFormattedTextTabSelected = !value; }
         }
+
+        public bool IsFormattedTextTabSelected { get; set; }
 
         public MainWindowViewModel(IDetectTextFormatService detectTextFormatService, ITextFormattingFactory textFormattingFactory)
         {
