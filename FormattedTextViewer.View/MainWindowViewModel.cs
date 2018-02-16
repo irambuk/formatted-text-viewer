@@ -83,6 +83,8 @@ namespace FormattedTextViewer.View
         public void CopyFromClipboard()
         {
             UnprocessedText = Clipboard.GetText(TextDataFormat.Text);
+
+            Process();
         }
 
         public void CopyToClipboard()

@@ -18,9 +18,11 @@ namespace FormattedTextViewer.View.Services
                 var jsonText = JsonConvert.SerializeObject(data, Formatting.Indented);
                 return jsonText;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Constants.TextInvalidFormat;
+                var stringBuffer = new StringBuilder();
+                stringBuffer.AppendFormat("Error: {0}", ex.Message);
+                return stringBuffer.ToString();
             }
         }
     }
