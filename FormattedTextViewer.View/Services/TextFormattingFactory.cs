@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FormattedTextViewer.View.Services
 {
@@ -21,7 +17,7 @@ namespace FormattedTextViewer.View.Services
                 case TextFormattingTypes.PlainText:
                     return new PlainTextFormattingStrategy();
                 default:
-                    throw new NotSupportedException("Given text formatting type is not supported:"+ type);
+                    throw new NotSupportedException("Given text formatting type is not supported:" + type);
             }
         }
     }

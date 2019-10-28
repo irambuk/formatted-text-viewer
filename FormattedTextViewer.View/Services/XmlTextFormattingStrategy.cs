@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FormattedTextViewer.View.Common;
+using System;
 using System.IO;
 using System.Text;
 using System.Xml;
-using FormattedTextViewer.View.Common;
 
 namespace FormattedTextViewer.View.Services
 {
